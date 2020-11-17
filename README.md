@@ -1,24 +1,26 @@
-# README
+# OVERVIEW
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You are managing a marina website. The website displays a table of 20 spots a boat can be. From the website, a user should be able to
 
-Things you may want to cover:
+- Add a boat
+- Move a boat to a different spot in the marina
+- Remove a boat
 
-* Ruby version
+A boat has three attributes
 
-* System dependencies
+- Name
+- Length
+- Color
 
-* Configuration
+The website is built in React and makes API calls to the Rails server to update the database and retrieve the current marina.
 
-* Database creation
+What we care about:
 
-* Database initialization
+- Getting a working solution
+- Adding some comments
+- Don't spend more than 4 hours on it ... if it takes any longer just add in a README what you would add if you had more time.
 
-* How to run the test suite
+What we don't care about
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+- Styling .. don't spend too much time making it look good.
 * ...
