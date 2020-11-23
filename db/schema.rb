@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_180756) do
+ActiveRecord::Schema.define(version: 2020_11_23_170801) do
 
   create_table "boats", force: :cascade do |t|
     t.string "name"
     t.float "length"
     t.string "color"
+    t.integer "slip_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slip_id"], name: "index_boats_on_slip_id"
   end
 
   create_table "marinas", force: :cascade do |t|
@@ -27,12 +29,14 @@ ActiveRecord::Schema.define(version: 2020_11_17_180756) do
   end
 
   create_table "slips", force: :cascade do |t|
-    t.integer "boat_id", null: false
+    t.integer "marina_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["boat_id"], name: "index_slips_on_boat_id"
+    t.boolean "occupied"
+    t.index ["marina_id"], name: "index_slips_on_marina_id"
   end
 
-  add_foreign_key "slips", "boats"
+  add_foreign_key "boats", "slips"
+  add_foreign_key "slips", "marinas"
 end

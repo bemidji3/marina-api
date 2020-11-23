@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :boats do
-        resources :slips
+      resources :marinas do
+        resources :slips, only: [:index, :update] do
+          resources :boats
+        end
       end
     end
   end
