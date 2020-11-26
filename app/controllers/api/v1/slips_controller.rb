@@ -2,7 +2,10 @@ class Api::V1::SlipsController < ApplicationController
   def index
     @marina = Marina.find(params[:marina_id])
     @slips = @marina.slips
-    render json: @slips
+    presented_slips = @slips.map do |slip|
+      SlipPresenter.new(slip).call
+    end
+    render json: presented_slips
   end
 
   def update
@@ -18,6 +21,6 @@ class Api::V1::SlipsController < ApplicationController
   private
 
   def slip_params
-    params.require(:slip).permit(:name)
+    params.require(:slip).permit(:name, :occupied)
   end
 end

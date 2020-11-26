@@ -1,5 +1,7 @@
 class Api::V1::BoatsController < ApplicationController
-  #before_action :find_boat
+  before_action(only: [:show, :update, :destroy]) do
+    self.boat = find_boat
+  end
 
   def index
     @boats = Boat.all
@@ -31,7 +33,7 @@ class Api::V1::BoatsController < ApplicationController
   def destroy
     if @boat
       @boat.destroy
-      render json: { message: 'Boat destroyed!' }, status: 200
+      render json: { message: 'Boat destroyed!', boat: boat }, status: 200
     end
   end
 
@@ -39,7 +41,7 @@ class Api::V1::BoatsController < ApplicationController
   private
 
   def boat_params
-    params.permit(:name, :length, :color, :slip_id)
+    params.require(:boat).permit(:name, :length, :color, :slip_id)
   end
 
   def find_boat

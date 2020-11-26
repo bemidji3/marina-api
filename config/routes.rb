@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         resources :slips, only: [:index, :update] do
           resources :boats
         end
+        resources :boats, only: [:index]
       end
     end
   end
